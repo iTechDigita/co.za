@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iTechDigital Pty Ltd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+            font-family: Helvetica, sans-serif, Arial;
+        }
+
+        body {
+            margin: 0 auto;
+            background-color: rgb(166, 160, 160);
+            background-image: url('img.png');
+            background-size: cover;
+        }
+
+        /* Chat Bar Styles */
+        .chat-bar-collapsible {
+            position: fixed;
+            bottom: 0;
+            right: 50px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .collapsible {
+            background-color: rgb(185, 25, 25);
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 350px;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            border-radius: 10px 10px 0px 0px;
+            border: 3px solid white;
+            border-bottom: none;
+        }
+
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+
+        .full-chat-block {
+            width: 350px;
+            background: white;
+            text-align: center;
+            overflow: auto;
+            scrollbar-width: none;
+            height: max-content;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .outer-container {
+            min-height: 500px;
+            bottom: 0%;
+            position: relative;
+        }
+
+        .chat-container {
+            max-height: 500px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            scroll-behavior: smooth;
+            hyphens: auto;
+        }
+
+        .chat-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chat-bar-input-block {
+            display: flex;
+            float: left;
+            box-sizing: border-box;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            background-color: rgb(235, 235, 235);
+            border-radius: 10px 10px 0px 0px;
+            padding: 10px 0px 10px 10px;
+        }
+
+        .chat-bar-icons {
+            display: flex;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+            width: 25%;
+            float: right;
+            font-size: 20px;
+        }
+
+        #chat-icon:hover {
+            opacity: .7;
+        }
+
+        /* Chat bubbles */
+        #userInput {
+            width: 75%;
+        }
+
+        .input-box {
+            float: left;
+            border: none;
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 16px;
+            color: #000;
+            background-color: white;
+            outline: none;
+        }
+
+        .userText {
+            color: white;
+            font-family: Helvetica;
+            font-size: 16px;
+            font-weight: normal;
+            text-align: right;
+            clear: both;
+        }
+
+        .userText span {
+            line-height: 1.5em;
+            display: inline-block;
+            background: #5ca6fa;
+            padding: 10px;
+            border-radius: 8px;
+            border-bottom-right-radius: 2px;
+            max-width: 80%;
+            margin-right: 10px;
+            animation: floatup .5s forwards;
+        }
+
+        .botText {
+            color: #000;
+            font-family: Helvetica;
+            font-weight: normal;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .botText span {
+            line-height: 1.5em;
+            display: inline-block;
+            background: #e0e0e0;
+            padding: 10px;
+            border-radius: 8px;
+            border-bottom-left-radius: 2px;
+            max-width: 80%;
+            margin-left: 10px;
+            animation: floatup .5s forwards;
+        }
+
+        @keyframes floatup {
+            from {
+                transform: translateY(14px);
+                opacity: .0;
+            }
+
+            to {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .full-chat-block {
+                width: 100%;
+                border-radius: 0px;
+            }
+
+            .chat-bar-collapsible {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+            }
+
+            .collapsible {
+                width: 100%;
+                border: 0px;
+                border-top: 3px solid white;
+                border-radius: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- CHAT BAR BLOCK -->
+    <div class="chat-bar-collapsible">
+        <button id="chat-button" type="button" class="collapsible">Click here to chat with us!
+            <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
+        </button>
+        <div class="content">
+            <div class="full-chat-block">
+                <!-- Message Container -->
+                <div class="outer-container">
+                    <div class="chat-container">
+                        <!-- Messages -->
+                        <div id="chatbox">
+                            <h5 id="chat-timestamp"></h5>
+                            <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
+                        </div>
+                        <!-- User input box -->
+                        <div class="chat-bar-input-block">
+                            <div id="userInput">
+                                <input id="textInput" class="input-box" type="text" name="msg"
+                                    placeholder="Tap 'Enter' to send a message">
+                                <p></p>
+                            </div>
+                            <div class="chat-bar-icons">
+                                <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
+                                    onclick="heartButton()"></i>
+                                <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
+                                    onclick="sendButton()"></i>
+                            </div>
+                        </div>
+                        <div id="chat-bar-bottom">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        // Collapsible
+        var coll = document.getElementsByClassName("collapsible");
+
+        for (let i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+
+                var content = this.nextElementSibling;
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+
+        function getTime() {
+            let today = new Date();
+            hours = today.getHours();
+            minutes = today.getMinutes();
+
+            if (hours < 10) {
+                hours = "0" + hours;
+            }
+
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+
+            let time = hours + ":" + minutes;
+            return time;
+        }
+
+        // Gets the first message
+        function firstBotMessage() {
+            let firstMessage = "🌟 Hello there! 👋 Ready to embark on a tech adventure? I'm your friendly AI companion! 🚀 Just pick a number: \n1️⃣ Tutoring\n2️⃣ Website Development\n3️⃣ Cellphone Repair\n4️⃣ Computer Repair.\n\nLet's make some digital magic happen! ✨ What can I assist you with today?";
+            document.getElementById("botStarterMessage").innerHTML = '<p class="botText"><span>' + firstMessage + '</span></p>';
+
+            let time = getTime();
+
+            $("#chat-timestamp").append(time);
+            document.getElementById("userInput").scrollIntoView(false);
+        }
+
+        firstBotMessage();
+
+        // Retrieves the response
+        function getHardResponse(userText) {
+            let botResponse = getBotResponse(userText);
+            let botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
+            $("#chatbox").append(botHtml);
+
+            document.getElementById("chat-bar-bottom").scrollIntoView(true);
+        }
+
+        //Gets the text text from the input box and processes it
+        function getResponse() {
+            let userText = $("#textInput").val();
+
+            if (userText == "") {
+                userText = "you!";
+            }
+
+            let userHtml =
+
+ '<p class="userText"><span>' + userText + '</span></p>';
+
+            $("#textInput").val("");
+            $("#chatbox").append(userHtml);
+            document.getElementById("chat-bar-bottom").scrollIntoView(true);
+
+            setTimeout(() => {
+                getHardResponse(userText);
+            }, 500)
+        }
+
+        // Handles sending text via button clicks
+        function sendButton() {
+            getResponse();
+        }
+
+        // Handles user pressing enter
+        $("#textInput").keypress(function (e) {
+            if (e.which == 13) {
+                getResponse();
+            }
+        });
+
+        // Handle heart button click
+        function heartButton() {
+            alert("💖 Thank you for liking us! 💖");
+        }
+
+        // Bot's response logic
+        function getBotResponse(input) {
+            // Information about services and price plans
+            if (input.includes("services")) {
+                return "We provide the following services:\n" +
+                       "1. Tutoring \n" +
+                       "2. Web Development and Web Design \n" +
+                       "3. Cellphone Repair \n" +
+                       "4. Computer Repair and Software installation \n\n" +
+                       "For more details or to inquire about a specific service, please contact us through our website or WhatsApp at 0694238317.";
+            }
+
+            // Responses based on user input
+            if (input.includes("1") || input.includes("tutoring")) {
+                return "Our tutoring services are designed to help students excel in computer science and related fields. Our services include:\n" +
+               "👨‍🏫 One-on-One Tutoring\n" +
+               "👩‍🏫 Group Tutoring\n" +
+               "💻 Online Tutoring\n" +
+               "📚 Homework Assistance\n" +
+               "📝 Exam Preparation\n\n" +
+               "For pricing details:\n" +
+               "👨‍🏫 One-on-One Tutoring: R200/hour\n" +
+               "👩‍🏫 Group Tutoring: R100/hour per student\n" +
+               "💻 Online Tutoring: R150/hour\n" +
+               "📚 Homework Assistance: R30/hour\n" +
+               "📝 Exam Preparation: R250/hour\n\n" +"_________________________"+"\n"+
+               "Subscription Options:\n" +
+               "📅 Weekly Subscription: R250\n\n" +
+               "📆 Monthly Subscription: R400\n\n" +
+            "\n_____________________\n"+
+               "We offer flexible tutoring sessions both in-person and online to accommodate your schedule. Our tutors are experienced professionals who provide personalized instruction tailored to your needs.";
+            } else if (input.includes("2") || input.includes("website")) {
+                return "We offer professional web development services to help you create a stunning online presence. Our services include:\n" +
+               "🖥️ Website Design and Development\n" +
+               "🛒 eCommerce Solutions\n" +
+               "📑 Content Management Systems\n" +
+               "🔍 SEO Optimization\n" +
+               "🛠️ Website Maintenance\n\n" +
+               "For pricing details:\n" +
+               "🖥️ Basic Website: R1000\n" +
+               "🛒 eCommerce Website: Starting at R1500\n" +
+               "🔍 SEO Services: R300/month\n" +
+               "🛠️ Website Maintenance: R150/month\n\n" +
+               "How We Deliver the Service:\n" +
+               "We work closely with you to understand your requirements and deliver customized web solutions. Our process includes initial consultation, design and development, testing, and deployment. We also offer ongoing support and maintenance.";
+            } else if (input.includes("Portfolio") || input.includes("Ecommerce")) {
+                return "portfolio website costs R1500, Ecommerce websites costs R6500 ";
+            } else if (input.includes("3") || input.includes("repair")) {
+                return "We offer expert cellphone repair services to ensure your device is back to perfect working condition. Our services include:\n" +
+               "📱 Screen Replacement\n" +
+               "🔋 Battery Replacement\n" +
+               "🔌 Charging Port Repair\n" +
+               "💧 Water Damage Repair\n" +
+               "🔧 Software Updates and Troubleshooting\n\n" +
+               "For pricing details:\n" +
+               "📱 Screen Replacement: Starting at R100\n" +
+               "🔋 Battery Repair: Starting at R250\n" +
+               "🔌 Charging Port Repair: Starting at R300\n" +
+               "💧 Water Damage Repair: Starting at R150\n" +
+               "🔧 Software Troubleshooting: R100\n\n" +
+               "How We Deliver the Service:\n" +
+               "We provide both in-store and on-site repair services. For minor issues, repairs can be done while you wait. For more complex issues, we offer a pickup and delivery service.";
+
+            } else if (input.includes("4") || input.includes("")) {
+                return "We provide comprehensive computer repair services for all types of computers, from desktops to laptops. Our services include:\n" +
+               "🦠 Virus and Malware Removal\n" +
+               "🔧 Hardware Repair and Replacement\n" +
+               "💽 Software Installation and Troubleshooting\n" +
+               "💾 Data Recovery\n" +
+               "⚙️ System Optimization\n\n" +
+               "For pricing details:\n" +
+               "🔍 Basic Diagnostic: R100\n" +
+               "🦠 Virus Removal: R100\n" +
+               "🔧 Hardware Repair: Starting at R400\n" +
+               "💽 Software Installation: R200\n" +
+               "💾 Data Recovery: Starting at R600\n\n" +
+               "How We Deliver the Service:\n" +
+               "Our technicians will come to your location to perform repairs on-site or take your device to our service center if needed. We also offer remote support for software-related issues.";
+            } else if (input.includes("hello")) {
+                return "Hi! How can I assist you ?";
+            } else if (input.includes("hey") || input.includes("hi") || input.includes("hy")) {
+                return "Hello! How can I help you ?";
+            } else if (input.includes("goodbye") || input.includes("ok") || input.includes("bye")) {
+                return "Take care of yourself. If you have more questions about our services, feel free to ask later!";
+            }
+            
+            if (input.includes("Tutoring")) {
+            return "Our tutoring services are designed to help students excel in computer science and related fields. Our services include:\n" +
+               "👨‍🏫 One-on-One Tutoring\n" +
+               "👩‍🏫 Group Tutoring\n" +
+               "💻 Online Tutoring\n" +
+               "📚 Homework Assistance\n" +
+               "📝 Exam Preparation\n\n" +
+               "For pricing details:\n" +
+               "👨‍🏫 One-on-One Tutoring: R200/hour\n" +
+               "👩‍🏫 Group Tutoring: R100/hour per student\n" +
+               "💻 Online Tutoring: R150/hour\n" +
+               "📚 Homework Assistance: R30/hour\n" +
+               "📝 Exam Preparation: R250/hour\n\n" +
+               "How We Deliver the Service:\n" +
+               "We offer flexible tutoring sessions both in-person and online to accommodate your schedule. Our tutors are experienced professionals who provide personalized instruction tailored to your needs.";
+            }
+            else {
+                return "I am sorry, iTechDigital is still in the process of creating me. To learn more about our services and pricing, visit our website or contact us.";
+            }
+        }
+    </script>
+</body>
+
+</html>
+
