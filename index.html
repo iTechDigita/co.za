@@ -7,57 +7,59 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-OLiP9z1Z83Cx2z1h0Zo5OLVQzIhccf3V95bP1Z5KwXStqu2QlOzCq4qO8YZcHVbp" crossorigin="anonymous">
-
-    <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- custom css file link  -->
 
     <style>
         body {
             background-color: whitesmoke;
             color: white;
+            font-family: Arial, sans-serif;
+            background-image: url('cover.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-        body {
-        background-color: #ffffff; /* Ensure the background color is light */
-        color: #333333; /* Ensure the text color is dark for contrast */
-        font-family: Arial, sans-serif;
-        }
+        
+        header {
+            background-image: url('cover.jpg')  ;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            padding-bottom: 20px; /* Ensures space at the bottom */
 
-        .section {
-        padding: 20px;
-        margin: 20px 0;
-        background-color: #f9f9f9; /* Light background for sections */
-        border: 1px solid #e0e0e0; /* Light border for sections */
-        border-radius: 5px;
-        }
-
-        .section h2 {
-            color: #333333; /* Dark color for section headings */
-        }
-
-        .section p {
-            color: #666666; /* Slightly lighter color for section text */
         }
 
         .navbar {
-            color: rgb(255, 255, 255);
-            background-color: blueviolet;
+            color: blueviolet;
+            margin-top: 20px;
+            box-shadow: 3px 3px 4px 4px cyan;
+            background-image: url('navbar.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-weight: bolder;
+            text-shadow: -1px 0 cyan, 0 1px cyan, 1px 0 cyan, 0 -1px cyan; 
         }
+        
         .navbar .nav-link {
-            color: white !important;
+            color: blueviolet !important;
+        }
+        
+        .navbar-nav {
+            list-style-type: none;
+            padding-left: 0;
         }
         
         .navbar-brand img {
             height: 70px;
             width: 70px;
             border-radius: 50%;
+            box-shadow:  0 0 5px  cyan;
+            margin-left: 5px;
         }
         
         .circle-img {
-            border-radius: 50%;
-            box-shadow: 3px 3px 4px 4px blueviolet;
+            box-shadow: 3px 3px 4px 4px  cyan;
+            border-radius: 0.5rem;
         }
 
         .circle-img.large {
@@ -66,23 +68,22 @@
         }
 
         .circle-img.medium {
-            width: 240px;
-            height: 240px;
+            width: 270px;
+            height: 270px;
         }
 
         .circle-img.small {
-            width: 180px;
-            height: 180px;
+            width: 270px;
+            height: 270px;
             background-image: url("bg.jpg");
         }
 
         .social-icons i {
             font-size: 24px;
             margin: 0 10px;
-            color: blueviolet;
-        }
+            color: cyan;     
+          }
 
-        /* Custom CSS for dropdown menu hover effect */
         .dropdown-menu {
             background-color: blueviolet;
         }
@@ -99,9 +100,9 @@
         .circle-video {
             width: 180px;
             height: 180px;
-            border-radius: 50%;
+            border-radius: 0.5rem;
             overflow: hidden;
-            box-shadow: 3px 3px 4px 4px blueviolet;
+            box-shadow: 3px 3px 4px 4px cyan;
         }
         
         .circle-video.large {
@@ -110,130 +111,128 @@
         }
 
         .circle-video.medium {
-            width: 240px;
-            height: 240px;
+            width: 270px;
+            height: 270px;
         }
 
         .circle-video.small {
-            width: 180px;
-            height: 180px;
+            width: 270px;
+            height: 270px;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
         }
 
-         
-        .team-member {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .team-member img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .team-member h3 {
-            margin-top: 15px;
-            color: #333;
-        }
-        
-        .team-member p {
-            color: #777;
-            font-style: italic;
-        }
-
-        .team-member a {
-            color: blueviolet;
+        .section {
+            padding: 20px;
+            margin: 20px 0;
+            color: #666666;
+            background-color: #f1ecec;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            list-style: none;
             text-decoration: none;
         }
 
-        .team-member a:hover {
-            text-decoration: underline;
+        .section h2 {
+            color: #333333;
         }
-        
+
+        .section p {
+            color: #666666;
+        }
+        .name{
+            color: blueviolet;
+            text-shadow: -1px 0 cyan, 0 1px cyan, 1px 0 cyan, 0 -1px cyan; 
+            font-weight: bolder;
+        }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Header Section -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">
-            <img src="iTechDigital.jpeg" alt="Logo">
-            iTechDigital, Your Trusted Partner in Technology Solutions 
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="linksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-link"></i> Links
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="linksDropdown">
-                        <a class="dropdown-item" href="team.html"><i class="fas fa-users"></i> Team</a>
-                        <a class="dropdown-item" href="chatBot/chatbot.html"><i class="fas fa-mobile-alt"></i> Chat!</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-code"></i> Web Development</a>
-                        <a class="dropdown-item" href="tutorial videos.html"><i class="fas fa-chalkboard-teacher"></i>Tutorial videos</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-concierge-bell"></i> Services
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="servicesDropdown">
-                        <a class="dropdown-item" href="#computer-repair-section"><i class="fas fa-laptop"></i> Computer Repair</a>
-                        <a class="dropdown-item" href="#cellphone-repair-section"><i class="fas fa-mobile-alt"></i> Cellphone Repair</a>
-                        <a class="dropdown-item" href="#web-development-section"><i class="fas fa-code"></i> Web Development</a>
-                        <a class="dropdown-item" href="#tutoring-section"><i class="fas fa-chalkboard-teacher"></i> Computer Science Tutoring</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html"><i class="fa fa-envelope"></i> Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <br><br>
-    <!-- Branding Images Section -->
-    <div class="container text-center my-5">
-        <div class="row">
-            <div class="col-6 col-md-3 mb-4">
-                <img src="CEO.jpeg" alt="Brand Image 1" class="circle-img large">
+    <header>
+        <!-- Navigation Section -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">
+                <img src="iTechDigital.jpeg" alt="Logo"> <span class="name">
+                iTechDigital </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="linksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-link"></i> Links
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="linksDropdown">
+                            <a class="dropdown-item" href="team.html"><i class="fas fa-users"></i> Team</a>
+                            <a class="dropdown-item" href="chatBot/chatbot.html"><i class="fas fa-mobile-alt"></i> Chat!</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-code"></i> Web Development</a>
+                            <a class="dropdown-item" href="tutorial videos.html"><i class="fas fa-chalkboard-teacher"></i>Tutorial videos</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-concierge-bell"></i> Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <a class="dropdown-item" href="#computer-repair-section"><i class="fas fa-laptop"></i> Computer Repair</a>
+                            <a class="dropdown-item" href="#cellphone-repair-section"><i class="fas fa-mobile-alt"></i> Cellphone Repair</a>
+                            <a class="dropdown-item" href="#web-development-section"><i class="fas fa-code"></i> Web Development</a>
+                            <a class="dropdown-item" href="#tutoring-section"><i class="fas fa-chalkboard-teacher"></i>Tutoring</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html"><i class="fa fa-envelope"></i> Contact</a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-6 col-md-3 mb-4">
-                <img src="TECHNICIAN.webp" alt="Brand Image 2" class="circle-img medium">
-            </div>
-            <div class="col-6 col-md-3 mb-4">
-                <div class="circle-video small">
-                    <iframe width="240" height="240" src="https://www.youtube.com/embed/https://youtu.be/55USb73qESY?list=PL8eVput4GQYc9PUgzImJvNzZEDZ1PptwQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </nav>
+        <br>
+        <!-- Branding Images Section -->
+        <div class="container text-center my-5">
+            <div class="row">
+                <div class="col-6 col-md-3 mb-4">
+                    <img src="CEO.jpeg" alt="Brand Image 1" class="circle-img large">
+                </div>
+                
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="circle-video small">
+                        <iframe width="240" height="240" src="https://www.youtube.com/embed/https://youtu.be/55USb73qESY?list=PL8eVput4GQYc9PUgzImJvNzZEDZ1PptwQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3 mb-4">
+                    <img src="TECHNICIAN.webp" alt="Brand Image 2" class="circle-img medium">
+                </div>
+
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="circle-video small">
+                        <iframe width="240" height="240" src="https://www.youtube.com/embed/OejmDp7R8lQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
-            <div class="col-6 col-md-3 mb-4">
-                <div class="circle-video small">
-                    <iframe width="240" height="240" src="https://www.youtube.com/embed/OejmDp7R8lQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
+        </div>
+        
+        <!-- Social Media Icons Section -->
+        <div class="container text-center my-5">
+            <div class="social-icons">
+                <a href="https://wa.me/0794851707" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61561195355299&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/best_ceo_owami/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/OwamiBest" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
-    </div>
-    <!-- Social Media Icons Section -->
-    <div class="container text-center my-5">
-        <div class="social-icons">
-            <a href="https://wa.me/0794851707" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61561195355299" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/your_twitter_profile" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com/magantsa_itechdigital/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com/channel/UCU6A3E8NYqPb3x6gV-PbsOg" target="_blank"><i class="fab fa-youtube"></i></a>
-        </div>
-    </div>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Computer Repair Section -->
+    </header>
+
+      <!-- Computer Repair Section -->
 <section id="computer-repair-section" class="section">
     <div class="container my-5">
         <h1>🖥️ Computer Repair</h1>
@@ -275,7 +274,7 @@
         <h2>💰 Pricing Plan</h2>
         <ul>
             <li>📱 Screen Replacement: Starting at R100</li>
-            <li>🔋 Battery Replacement: Starting at R250</li>
+            <li>🔋 Battery Repair: Starting at R250</li>
             <li>🔌 Charging Port Repair: Starting at R300</li>
             <li>💧 Water Damage Repair: Starting at R150</li>
             <li>🔧 Software Troubleshooting: R100</li>
@@ -324,9 +323,6 @@
             <li>📝 Exam Preparation</li>
         </ul>
         <h2>💰 Pricing Plan</h2>
-        <h3><Subscription Options:</h3>
-         <p>📅 Weekly Subscription: R250  </p>
-         <p>📆 Monthly Subscription: R400 </p>
         <ul>
             <li>👨‍🏫 One-on-One Tutoring: R200/hour</li>
             <li>👩‍🏫 Group Tutoring: R100/hour per student</li>
@@ -339,7 +335,9 @@
     </div>
 </section>
 
-</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
 
